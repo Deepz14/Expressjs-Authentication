@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const {handleError} = require('./utils/handleError');
 
 
 // IMPORT ALL ROUTES
@@ -14,13 +15,10 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api/auth', authRoutes);
 
 
-app.get('/', (req, res) => res.send('<h1>Hello World!</h1>'));
+app.get('/', (req, res) => res.send('<h1>Welcome to the Application!</h1>'));
 
 // Error Handling
-app.use((error, req, res, next) => {
-    res.status(error.status || 500)
-    .send({status: 'Error', message: error.message})
-})
+app.use(handleError);
 
 // Export app.js
 module.exports = app;
