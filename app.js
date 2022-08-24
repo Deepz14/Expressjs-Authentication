@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const {handleError} = require('./utils/handleError');
 
 
@@ -10,6 +11,9 @@ const authRoutes = require('./routers/auth');
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors({
+    origin: ['http://localhost:4200','http://localhost:8080']
+}))
 
 // ROUTER MIDDLEWARES
 app.use('/api/auth', authRoutes);
