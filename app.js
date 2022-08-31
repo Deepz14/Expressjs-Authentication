@@ -11,9 +11,7 @@ const authRoutes = require('./routers/auth');
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors({
-    origin: ['http://localhost:4200','http://localhost:8080']
-}))
+app.use(cors());
 
 // ROUTER MIDDLEWARES
 app.use('/api/auth', authRoutes);
